@@ -1,0 +1,53 @@
+@startuml C4_Elements
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+
+AddElementTag("classe", $fontColor="#7A047F")
+AddElementTag("usuario", $fontColor="#F09409")
+AddElementTag("database", $fontColor="#B5045C")
+
+
+title Venda de Roupas Online
+
+
+Person(usuario, "Usuário",$tags="usuario")
+Person(administrador,"Administrador",$tags="usuario")
+
+Container(interface_classe, "Interface", "", "Primeiro ponto de interação com a aplicação.",$tags="classe")
+Container(usuario_classe, "Usuário", "", "Classe referente ao usuário da aplicação.",$tags="classe")
+Container(administrador_classe, "Administrador", "", "Classe referente ao administrador,que pode cadastrar produtos.",$tags="classe")
+Container(pagamento_classe, "Pagamento", "", "Classe referente ao pagamento.",$tags="classe")
+Container(pedido_classe, "Pedido", "", "Classe referente ao pedido.",$tags="classe")
+Container(produto_classe, "Produto", "", "Classe referente ao produto.",$tags="classe")
+Container(endereco_classe, "Endereço", "", "Classe referente ao endereço.",$tags="classe")
+
+
+ContainerDb(db_usuario, "Database_Usuario", "", "Guardar informações relacionadas ao usuário.",$tags="database")
+ContainerDb(db_administrador, "Database_Administrador", "", "Guardar informações relacionadas ao administrador.",$tags="database")
+ContainerDb(db_pagamento, "Database_Pagamento", "", "Guardar informações relacionadas ao pagamento.",$tags="database")
+ContainerDb(db_pedido, "Database_Pedido", "", "Guardar informações relacionadas aos pedidos.",$tags="database")
+ContainerDb(db_endereco, "Database_Endereco", "", "Guardar informações relacionadas ao endereco.",$tags="database")
+ContainerDb(db_produto, "Database_Produto", "", "Guardar informações relacionadas ao produto.",$tags="database")
+
+
+Rel(administrador_classe,db_administrador,"","")
+Rel(usuario_classe,db_usuario,"","")
+Rel(pagamento_classe,db_pagamento,"","")
+Rel(pedido_classe,db_pedido,"","")
+Rel(endereco_classe,db_endereco,"","")
+Rel(produto_classe,db_produto,"","")
+
+
+Rel(usuario,interface_classe,"","")
+Rel(administrador,interface_classe,"","")
+Rel(interface_classe,usuario_classe,"","")
+Rel(interface_classe,administrador_classe,"","")
+Rel(usuario_classe,pedido_classe,"","")
+Rel(administrador_classe,pedido_classe,"","")
+Rel(administrador_classe,produto_classe,"","")
+Rel(pagamento_classe,pedido_classe,"","")
+Rel(produto_classe,pedido_classe,"","")
+Rel(pedido_classe,endereco_classe,"","")
+
+
+@enduml

@@ -1,0 +1,41 @@
+@startuml C4_Elements
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+title Diagrama de Contexto de Sistema
+
+Person(usuario_administrador,"Usuário/Administrador","")
+
+System(autenticacao_gerenciamento, "Sistema de Autenticação e Gerenciamento de Usuários", "Autenticações de toda a aplicação e seus componentes", "")
+System(pagamentos, "Sistema de Pagamentos", "Gerenciamento dos pagamentos", "")
+System(estoque, "Sistema de Estoque e catálogo", "Controle dos produtos disponíveis", "")
+System(pedidos, "Sistema de Pedidos", "Pedido,catálogo e recomendações", "")
+System(avaliacao_comentarios, "Sistema de Avaliação e Comentários", "", "")
+System(interfaces, "Sistema de Interfaces", "Fornece os meios de interação da aplicação", "")
+
+
+Rel(autenticacao_gerenciamento,pedidos,"Dados do usuário","")
+Rel(autenticacao_gerenciamento,pagamentos,"Dados do usuário","")
+Rel(autenticacao_gerenciamento,avaliacao_comentarios,"Dados do usuário","")
+Rel(autenticacao_gerenciamento,estoque,"Dados","")
+Rel(avaliacao_comentarios,pedidos,"Avaliação do pedido","")
+
+Rel(usuario_administrador,estoque,"Navega")
+Rel(usuario_administrador,pagamentos,"Paga","")
+Rel(pagamentos,usuario_administrador,"Confirma o pagamento","")
+Rel(usuario_administrador,autenticacao_gerenciamento,"Fornece os dados","")
+Rel(usuario_administrador,avaliacao_comentarios,"Opinião e comentários","")
+
+
+Rel(pedidos,pagamentos,"Dados do pagamento","")
+Rel(pagamentos,pedidos,"Confirmação do pagamento","")
+
+Rel(estoque,pedidos,"Disponível ou não","")
+
+Rel(interfaces,autenticacao_gerenciamento,"","")
+Rel(interfaces,pagamentos,"","")
+Rel(interfaces,estoque,"","")
+Rel(interfaces,pedidos,"","")
+Rel(interfaces,avaliacao_comentarios,"","")
+
+
+@enduml

@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Vulture Investimentos</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="shortcut icon" href="\img\vulture.png" type="image/x-icon">
+</head>
+<body class="body">
+    <header>
+        <div class="logoHeader">
+            <img src="\img\vulture.png" width="100px">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Vulture Investimentos</a>
+
+            
+        </div>
+ 
+        <div class="NavButton">
+            <a href="#" onclick="modoescuro()"><i class='bx bxs-moon'></i></a>
+            
+
+            <a asp-area="" asp-controller="Home" asp-action="sobre" class="sobre">Sobre</a>
+            <a asp-area="" asp-controller="Home" asp-action="Creditos" class="Creditos">Créditos</a>
+            <a class="homeButton" asp-area="" asp-controller="Home" asp-action="Index" class="homee">Home</a>
+        </div>
+     
+
+    </header>
+    <div class="containerMain">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

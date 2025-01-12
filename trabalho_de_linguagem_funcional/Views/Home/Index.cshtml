@@ -1,0 +1,594 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@*Style da pagina Calculadora*@
+
+<style> 
+    :root {
+        --corNav: rgb(45, 47, 51);
+        --corNavSecundaria: rgb(82, 82, 82);
+        --roxo: #9449ef;
+        --azul: #26a6e6;
+    }
+
+    *{
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+    }
+    .text-center{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /*calculadora*/
+
+    .calculadora{
+        position: absolute;
+        top: 110px;
+        width: 700px;
+        height: 400px;
+        border-radius: 20px;
+        background-color: rgb(45, 47, 51);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        z-index: 10;
+
+    }
+    .calculadora h1{
+        margin-top: 30px;
+        width: 500px;
+        color: white;
+        border-radius: 10px;
+        padding: 20px;
+        font-size: 30px;
+        border: 3px solid var(--roxo);
+    }
+
+    .tipos_de_investimentos{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin: 20px;
+        align-items: center;
+    }
+    .tipos_de_investimentos a{
+        background-color: var(--roxo);
+        width: 150px;
+        height: 70px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 20px;
+        transition: all .3s;
+    }
+    .tipos_de_investimentos a:hover{
+        background-color: var(--azul);
+        
+    }
+    .tipos_de_investimentos h1{
+        position: relative;
+        margin-top: 0px;
+        padding: 0;
+        width: auto;
+        height: 50px;
+        color: white;
+        font-size: 17px;
+        border: none;
+        display: flex;
+        align-items: center;
+    }
+    .tipos_de_investimentos h1::before{
+        content: '';
+        position: absolute;
+        height: 5px;
+        background-color: var(--roxo);
+        width: 100%;
+        bottom: 5px;
+
+
+    }
+    .coluna1 , .coluna2{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    .input_para_investir{
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        gap: 20px;
+        background-color: rgb(82, 82, 82);
+        width: 100%;
+        height: 100px;
+        border-radius: 20px;
+    }
+    .input_para_investir input{
+        width: 200px;
+        height: 70px;
+        text-align: center;
+    }
+    .input_para_investir a{
+        background-color: rgb(0, 158, 42);
+        height: 100%;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+    }
+    .investimentos{
+        display: flex;
+        gap: 20px;
+    }
+
+    .informaçoesLaterais{
+        height: 50px;
+    }
+
+    /*configurando menus laterais de informaçoes*/
+
+    .informacoes_Tipos_De_InvestimentosCDI{
+        position: relative;
+        top: 170px;
+        left: 225px;
+        transition: all .5s;
+        z-index: 4;
+    }
+    .informacoes_Tipos_De_InvestimentosSELIC{
+        position: relative;
+        top: 25px;
+        left: 225px;
+        transition: all .5s;
+        z-index: 3;
+    }
+    .informacoes_Tipos_De_InvestimentosCDB{
+        position: relative;
+        top: -275px;
+        left: 225px;
+        transition: all .5s;
+        z-index: 0;
+    }
+
+
+
+    .CDI,.SELIC,.CDB{
+        background-color: var(--corNavSecundaria);
+        height: 200px;
+        width: 250px;
+        border: 1px solid var(--corNavSecundaria);
+        border-radius: 20px;
+    }
+    
+    .CDI button,.SELIC button,.POUP button,.CDB button{
+        position: absolute;
+        height: 50px;
+        padding: 10px;
+        top: 0;
+        left: 0;
+        width: 330px;
+        font-size: 20px;
+        color: white;
+        background-color: #9449ef;
+        text-align: right;
+        display: flex;
+        justify-content: right;
+        align-items: center;
+        border: none;
+        border-radius: 10px;
+    }
+    .CDI button{
+        width: 337px;
+    }
+    .SELIC button{
+        width: 353px;
+
+    }
+    .CDB button{
+        width: 343px;
+
+    }
+    .Informaçoes{
+        display: block;
+        color: white;
+        text-align: center;
+        margin-top: 35px;
+        font-size: 12px;
+        margin-left: 70px;
+        margin-right: 10px;
+    }
+
+
+
+
+    .informacoes_Tipos_De_InvestimentosPOUP{
+        position: relative;
+        top: -65px;
+        left: 225px;
+        transition: all .5s;
+        z-index: 0;
+    }
+
+    .POUP{
+        background-color: var(--corNavSecundaria);
+        height: 155px;
+        width: 250px;
+        border: 1px solid var(--corNavSecundaria);
+        border-radius: 20px;
+    }
+    .POUP button{
+        position: absolute;
+        height: 50px;
+        padding: 10px;
+        top: 0;
+        left: 0;
+        width: 410px;
+        font-size: 20px;
+        color: white;
+        background-color: #9449ef;
+        text-align: right;
+        display: flex;
+        justify-content: right;
+        align-items: center;
+        border: none;
+        border-radius: 10px;
+        z-index: 1;
+    }
+
+
+
+    /*Telinha de Resultados*/
+
+        .escurecendotela{
+            position: fixed;
+            top: 0;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.855);
+            pointer-events: none;
+            z-index: 1000;
+            transition: all .5s;
+                
+        }
+    .telaResultados{
+        position: fixed;
+        top: 40px;
+        z-index: 1001;
+        background-color: var(--roxo);
+        width: 500px;
+        height: 650px;
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        transform: scale(0);
+        transition: all .5s;
+    }
+    .telaCodigos{
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+         width: 500px;
+        height: 650px;
+        top: 40px;
+        z-index: 1000;
+        transition: all .5s;
+        opacity: 0;
+        gap: 25px;
+        overflow: hidden;
+        pointer-events: none;
+
+    }
+    .telaCodigos img{
+        border-radius: 20px;
+
+
+    }
+    .botaoSair{
+        position: relative;
+        right:  -200px;
+        top: 10px;
+    }
+    .botaoSair i{
+        color: red;
+        font-size: 60px;
+    }
+    .tituloResultado{
+        position: relative;
+        width: 300px;
+        color: white;
+    }
+    .tituloResultado::before{
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: 5px;
+        right: 0;
+        top: 50px;
+        background-color: white;
+        z-index: 4500;
+
+    }
+    .investimentoEscolhido{
+        display: flex;
+        margin: 20px;
+        justify-content:center;
+        align-items: center;
+        width: 200px;
+        height: 50px;
+
+        background-color: var(--corNav);
+        border-radius: 20px;
+    }
+    .investimentoEscolhido p{
+        margin: 0;
+        padding: 0;
+        font-size: 20px;
+        color: white;
+
+        
+    }
+    #resultadoDiario{
+        background-color: #26a6e6;
+    }
+    
+    .ganhos{
+        display: flex;
+        gap: 10px;
+        background-color: var(--corNav);
+        width: 100%;
+        height: 300px;
+        align-items: center;
+        justify-content: center;
+    }
+    .anual_mensal_diario{
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius:20px ;
+        width: 150px;
+        height: 230px;
+        gap: 50px;
+    }
+    .anual_mensal_diario h1{
+        margin: 0;
+        padding: 0;
+        font-size: 17px;
+        background-color: var(--roxo);
+        border-radius: 10px;
+                text-align: center;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+        width: 90px;
+        height: 40px;
+    }
+    .anual_mensal_diario p{
+        margin: 0;
+        background-color: rgb(47, 255, 102);
+        font-size: 17px;
+        border-radius: 10px;
+        width: 80px;
+    }
+    
+    .entrada_saida{
+        background-color: white;
+        color: black;
+        margin-top: 20px;
+        border-radius: 20px;
+        width: 250px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .entrada_saida p{
+        padding: 0;
+        margin: 10px;
+        
+    }
+    .textoColorido{
+        background-color: var(--roxo);
+        padding-left: 7px;
+        padding-right: 7px;
+        border-radius: 5px;
+    }
+    .BotaoParaVerCodigos{
+        background-color: black;
+        padding: 7px;
+        margin: 20px;
+        border-radius: 5px;
+        transition: all .3s;
+    }
+    .BotaoParaVerCodigos:hover{
+        background-color: rgb(21, 21, 21);
+        transform: scale(1.1);
+    }
+    .bx.bx-desktop{
+        color: rgb(255, 0, 153);
+        font-size: 30px;
+    }
+    .bx.bx-code-curly{
+        color: #d3e626;
+        font-size: 30px;
+    }
+    .legendas{
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+        justify-content: center;
+        text-align: right;
+        left: -205px;
+        top: 200px;
+    }
+    .legendas p{
+        display: flex;
+        align-items: center;
+        color: white;
+        font-size: 15px;
+       
+        
+    }
+    .bx.bxs-checkbox{
+        font-size: 25px;
+    }
+    .iTempoRendendo i{
+        color: var(--roxo);
+
+    }
+    .iValorfinal i{
+        color: var(--azul);
+
+    }
+    .iPorcentagemObtida i{
+        color: rgb(47, 255, 102);
+
+    }
+    input:focus {
+        outline: none;
+    }
+            
+    
+          
+    
+    
+
+
+</style>
+
+<div class="text-center">
+
+    <div class="informaçoesLaterais">
+            <div class="informacoes_Tipos_De_InvestimentosCDI">
+                <div class="CDI">
+                    <button class="tituloCDI" onclick="exibirinfos(1)" >CDI <i class='bx bx-menu-alt-left'></i></button>
+                    
+                    <p class="Informaçoes">O CDI é um indicador de taxas de juros do mercado interbancário no Brasil, é um investimento com um bom retorno de juros que atualmente estão 13,65%, porém com um risco moderado.</p>
+                    
+
+
+                </div>
+            </div>
+            <div class="informacoes_Tipos_De_InvestimentosSELIC">
+                <div class="SELIC">
+                    <button class="tituloSELIC" onclick="exibirinfos(2)" >SELIC <i class='bx bx-menu-alt-left'></i></button>
+                    
+                    <p class="Informaçoes">A Taxa Selic é a taxa básica de juros definida pelo Banco Central no Brasil, aplicando no tesouro nacional com taxa de 13,25%  é um investimento seguro, porém de longo prazo. </p>
+                    
+
+
+                </div>
+            </div>
+             <div class="informacoes_Tipos_De_InvestimentosPOUP">
+                <div class="POUP">
+                    <button class="tituloPOUP" onclick="exibirinfos(3)" >POUPANÇA <i class='bx bx-menu-alt-left'></i></button> br
+                    
+                    <p class="Informaçoes">A <span class="textoColorido">Poupança</span> é uma conta de baixo risco, oferecida por bancos, que gera renda isentos de impostos <br>Rendimento: 8,64% ao ano</p>
+                    
+
+
+                </div>
+            </div>
+             <div class="informacoes_Tipos_De_InvestimentosCDB">
+                <div class="CDB">
+                    <button class="tituloCDB" onclick="exibirinfos(4)" > CDB <i class='bx bx-menu-alt-left'></i></button> br
+                    
+                    <p class="Informaçoes">O<span class="textoColorido">CDB</span>é um investimento onde você empresta dinheiro ao banco e recebe juros de 14,84% em troca ao final do prazo.</p>
+                    
+
+
+                </div>
+            </div>
+            
+    </div>
+
+
+
+
+    
+    
+    <div class="calculadora">
+        <h1>Calculadora de Investimentos</h1>
+        <div class="tipos_de_investimentos">
+            <h1>Selecione o Tipo a ser Calculado: </h1>
+            <div class="investimentos">
+                <div class="coluna1">
+                    <a class="cdibutton" href="#"onclick="exibirinfos(1); InvestimentoSelecionado(1);setvalor2(13.65)">CDI</a>
+                    <a class="CDBompostosbutton" href="#"onclick="exibirinfos(4); InvestimentoSelecionado(2);setvalor2(14.84)">CDB</a>
+                </div>
+                <div class="coluna2">
+                    <a class="selicbutton"  href="#" onclick="exibirinfos(2); InvestimentoSelecionado(3);setvalor2(13.25)">SELIC </a>
+                    <a class="poupancaButton" href="#" onclick="exibirinfos(3); InvestimentoSelecionado(4);setvalor2(8.64)">POUPANÇA</a>
+                    
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="input_para_investir">
+            <input class="input" type="number" placeholder="Insira um valor">
+            <a href="#" onclick="calcular();Resultados()">Calcular</a>
+        </div>
+
+
+
+    </div>
+    <div class="escurecendotela">
+
+    </div>
+    <div class="telaResultados">
+        <div class="legendas">
+            <p class="iTempoRendendo">Tempo Rendendo<i class='bx bxs-checkbox'></i> </p>
+            <p class="iValorfinal">Valor final<i class='bx bxs-checkbox'></i> </p>
+            <p class="iPorcentagemObtida">Porcentagem Obtida<i class='bx bxs-checkbox'></i> </p>
+            
+        </div>
+        <a class="botaoSair" onclick="fecharTelaResultados();fecharCodigo()" href="#"><i class='bx bx-x'></i></a>
+        <h1 class="tituloResultado">Rendimento</h1>
+        <div class="resultados">
+            <div class="investimentoEscolhido">
+            <p class="tipo"></p>
+        </div>
+            
+        </div>
+        <div class="ganhos">
+                <div class="anual_mensal_diario">
+                    <h1>1 Ano</h1>
+                    <p id="resultadoDiario" class="resultadoAnual"></p>
+                    <p class="porcentagemAnual"></p>
+
+                </div>
+                <div class="anual_mensal_diario">
+                    <h1>1 mês</h1>
+                    <p id="resultadoDiario" class="resultadoMensal"></p>
+                    <p class="porcentagemMensal"></p>
+
+                </div>
+                <div class="anual_mensal_diario">
+                    <h1>1 dia</h1>
+                    <p id="resultadoDiario" class="resultadoDiario"></p>
+                    <p class="porcentagemDiaria"></p>
+
+                </div>
+        </div>
+        <div class="entrada_saida">Valor Inicial:<p class="valorInicial"></p> </div>
+        <a onclick="mostrarCodigo()" class="BotaoParaVerCodigos" href="#"><i class='bx bx-desktop' ></i><i class='bx bx-code-curly' ></i></a>
+        
+        
+
+    </div>
+    <div class="telaCodigos">
+           <img src="\img\criandofuncoes.png">
+            <img src="\img\chamandofuncoes.png">
+    </div>
+</div>
+ <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
